@@ -160,6 +160,8 @@ def load_and_preprocess_image(img_path):
     features = model.predict(img_array)
     features = features.flatten()
     return features
+```
+```
 
 # Load the pretrained Xception model
 model = Xception(weights='imagenet', include_top=False, pooling='avg')
