@@ -2,7 +2,7 @@
 Predicting Onset of Autism in Kids using Face Segments
 
 ## DATA.
-For this project, i got photos of kids from an Autism Dataset (Autism-Image- Dataset) that is available on Kaggle. Most of the children in the sample were between the ages of two and eight, while their ages ranged from two to fourteen. The pictures were all in the JPEG format and were typical 2D RGB colour pictures. There were 2,940 photographs of children in this dataset overall, divided into two categories with 1,470 in each category.
+For this project, I got photos of kids from an Autism Dataset (Autism-Image—Dataset) that is available on Kaggle. Most of the children in the sample were between the ages of two and eight, while their ages ranged from two to fourteen. The pictures were all in JPEG format and were typical 2D RGB color pictures. There were 2,940 photographs of children in this dataset, divided into two categories with 1,470 being diagnosed with autism and the other 1,470 free of autism.
  ![full face](./folder/images/full picture.jpg)
 
  ## DATA PREPARATION.
@@ -122,11 +122,12 @@ for filename in os.listdir(input_folder):
 
                 print(f"Saved extracted upper face region to {output_path}")
 ```
-   Using the the face mesh landmarks points I was able to extract the region of the face (eyes region, forehead region, left face, right face, upper region, lower region, nose and cheeks) required from the dataset.
-   ![Eyes Region](./folder/images/eyes.jpg)
-   ![Fore Head](folder/images/forehead.jpg)
-   ![Upper Face](./folder/images/upper face.jpg)
-   ![Lower Face](./folder/images/lower face.jpg)
-   ![Left Face](./folder/images/left fae.jpg)
-   ![Right Face](./folder/images/Right Face.png)
-   ![Nose and Cheeks](./folder/images/nose and cheeks.jpg)
+   Using the face mesh landmarks points, I could extract the facial region (eyes region, forehead region, left face, right face, upper region, lower region, nose and cheeks) required from the dataset.
+   ![Eyes Region](./folder/images/eyes.jpg). Eyes region
+   ![Fore Head](folder/images/forehead.jpg). Fore Head
+   ![Upper Face](./folder/images/upper face.jpg) Upper Face
+   ![Lower Face](./folder/images/lower face.jpg) Lower face
+   ![Left Face](./folder/images/left fae.jpg) Left face
+   ![Right Face](./folder/images/Right Face.png) Right face
+   ![Nose and Cheeks](./folder/images/nose and cheeks.jpg) Nose and cheeks
+   I uploaded the images into Google Drive for easy access and analysis using Google Colab as the IDE. I extracted the features of the pictures using Resnet-50, Resnet-101, Densenet-121, Inception-V3 and Xception and saved into CSV files
