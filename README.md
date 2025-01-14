@@ -9,7 +9,6 @@ Predicting Onset of Autism in Kids using Face Segments
 
 ### MEDIAPIPE.
  - Using the Mediapipe, i created a face-mesh landmarks shown in the image below.
-
 ```python
 
 !pip install mediapipe opencv-python
@@ -143,7 +142,7 @@ import os
 import cv2
 ```
 - Connect to Google Drive
-  ```
+```
   from google.colab import drive
 drive.mount('/content/drive')
 ```
@@ -176,5 +175,5 @@ for img_path in image_paths:
     features = extract_features(model, img_path)
     features_list.append(features)
     image_names.append(os.path.basename(img_path))
-    ```
+```
 - Convert features to CSV file and save.
