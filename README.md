@@ -132,4 +132,50 @@ for filename in os.listdir(input_folder):
    ![Left Face](./folder/images/left fae.jpg) Left face
    ![Right Face](./folder/images/Right Face.png) Right face
    ![Nose and Cheeks](./folder/images/nose and cheeks.jpg) Nose and cheeks
-   - I uploaded the images into Google Drive for easy access and analysis using Google Colab as the IDE. I extracted the features of the pictures using Resnet-50, Resnet-101, Densenet-121, Inception-V3 and Xception and saved into CSV files
+   - I uploaded the images into Google Drive for easy access and analysis using Google Colab as the IDE. I extracted the features of the pictures using Resnet-50, Resnet-101, Densenet-121, Inception-V3 and Xception and saved into CSV files.
+```
+import tensorflow as tf
+from tensorflow.keras.applications import Xception
+from tensorflow.keras.applications.xception import preprocess_input
+from tensorflow.keras.preprocessing import image
+import numpy as np
+import pandas as pd
+import os
+import cv2
+```
+- Connect to Google Drive
+  ```
+  from google.colab import drive
+drive.mount('/content/drive')
+```
+- load appropriate model and extract features
+```
+def load_and_preprocess_image(img_path):
+    img = image.load_img(img_path, target_size=(224, 224))
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)
+    img_array = preprocess_input(img_array)
+    return img_array
+
+    def extract_features(model, img_path):
+    img_array = load_and_preprocess_image(img_path)
+    features = model.predict(img_array)
+    features = features.flatten()
+    return features
+
+# Load the pretrained Xception model
+model = Xception(weights='imagenet', include_top=False, pooling='avg')
+
+# Directory containing the images
+image_dir = '/content/drive/MyDrive/face_extract/eyes/nonautistic'
+image_paths = [os.path.join(image_dir, img) for img in os.listdir(image_dir) if img.endswith(('png', 'jpg', 'jpeg'))]
+
+# Extract features for each image and save to a list
+features_list = []
+image_names = []
+for img_path in image_paths:
+    features = extract_features(model, img_path)
+    features_list.append(features)
+    image_names.append(os.path.basename(img_path))
+    ```
+- Convert features to CSV file and save.
