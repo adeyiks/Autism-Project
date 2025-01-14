@@ -51,4 +51,75 @@ if results.multi_face_landmarks:
 ![Face Mesh](./folder/images/face mesh.jpg)
 
 ### FACE SEGMENT EXTRACTION.
+```
+!pip install mediapipe opencv-python
+import cv2
+import mediapipe as mp
+import numpy as np
+import os
+```
+```
+# Initialize MediaPipe Face Mesh
+mp_face_mesh = mp.solutions.face_mesh
+face_mesh = mp_face_mesh.FaceMesh(static_image_mode=True, max_num_faces=1, min_detection_confidence=0.5)
+# Define the input and output folders
+input_folder = "/content/drive/MyDrive/AutismDataset/consolidated/Autistic"
+output_folder = "/content/drive/MyDrive/faceext/eyes/autistic"
+
+# Create the output folder if it doesn't exist
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+# Function to get bounding box for a set of points
+def get_bounding_box(points, image_shape):
+    x_coords = [p[0] for p in points]
+    y_coords = [p[1] for p in points]
+    x_min = max(0, min(x_coords))
+    y_min = max(0, min(y_coords))
+    x_max = min(image_shape[1], max(x_coords))
+    y_max = min(image_shape[0], max(y_coords))
+    return x_min, y_min, x_max - x_min, y_max - y_min
+```
+```
+# Iterate over each image in the input folder
+for filename in os.listdir(input_folder):
+    if filename.endswith(".jpg") or filename.endswith(".png"):
+        image_path = os.path.join(input_folder, filename)
+
+        # Load the image
+        image = cv2.imread(image_path)
+        rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+        # Perform facial landmark detection
+        results = face_mesh.process(rgb_image)
+
+        if results.multi_face_landmarks:
+            for face_landmarks in results.multi_face_landmarks:
+                # Define landmarks for the upper part of the face (eyebrows and forehead)
+                # You can adjust these indices based on the specific area you want to crop
+                upper_face_indices = [139,230,195,450,383,282,9,53]
+                upper_face_points = [(int(face_landmarks.landmark[idx].x * image.shape[1]), int(face_landmarks.landmark[idx].y * image.shape[0])) for idx in upper_face_indices]
+
+                # Get bounding box for the upper face points
+                bbox = get_bounding_box(upper_face_points, image.shape)
+                x_min, y_min, width, height = bbox
+
+                # Ensure bounding box is within image dimensions
+                if x_min < 0 or y_min < 0 or x_min + width > image.shape[1] or y_min + height > image.shape[0]:
+                    print(f"Skipping {filename}: Bounding box out of image boundaries")
+                    continue
+
+                # Extract the region
+                upper_face_region = image[y_min:y_min+height, x_min:x_min+width]
+
+                # Check if region is not empty
+                if upper_face_region.size == 0:
+                    print(f"Skipping {filename}: Empty region")
+                    continue
+
+                # Save the extracted region
+                output_path = os.path.join(output_folder, f"eyes_{filename}")
+                cv2.imwrite(output_path, upper_face_region)
+
+                print(f"Saved extracted upper face region to {output_path}")
+```
    
