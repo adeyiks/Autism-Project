@@ -5,10 +5,9 @@ Predicting Onset of Autism in Kids using Face Segments
 - For this project, I got photos of kids from an Autism Dataset (Autism-Image—Dataset) that is available on Kaggle. Most of the children in the sample were between the ages of two and eight, while their ages ranged from two to fourteen. The pictures were all in JPEG format and were typical 2D RGB color pictures. There were 2,940 photographs of children in this dataset, divided into two categories with 1,470 being diagnosed with autism and the other 1,470 free of autism.
  ![full face](./folder/images/full picture.jpg)
 
- ## DATA PREPARATION.
+## DATA PREPARATION.
 
- 
- ### MEDIAPIPE.
+### MEDIAPIPE.
  - Using the Mediapipe, i created a face-mesh landmarks shown in the image below.
 
 ```python
