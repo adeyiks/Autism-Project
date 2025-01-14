@@ -46,7 +46,9 @@ if results.multi_face_landmarks:
     # Save the image with landmarks
     cv2.imwrite("output_image_with_landmarks.jpg", image)
 ```
-![Face Mesh](./folder/images/face mesh.jpg).
+
+
+![Face Mesh](./folder/images/face mesh.jpg)
 
 ### FACE SEGMENT EXTRACTION.
    
