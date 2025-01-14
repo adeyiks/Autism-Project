@@ -178,4 +178,5 @@ for img_path in image_paths:
     features_list.append(features)
     image_names.append(os.path.basename(img_path))
 ```
-- Convert features to CSV file and save.
+- Convert features to CSV file and save. using the saved files i built multiple models to determine the best fit to predict autism.
+![Results](folder/images/result.jpg)
