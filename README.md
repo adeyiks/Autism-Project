@@ -9,6 +9,7 @@ For this project, i got photos of kids from an Autism Dataset (Autism-Image- Dat
  ### MEDIAPIPE.
  - Using the Mediapipe, i created a face-mesh landmarks shown in the image below.
 ```PYTHON
+
 !pip install mediapipe opencv-python
 from google.colab.patches import cv2_imshow
 import cv2
