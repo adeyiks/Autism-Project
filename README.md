@@ -8,7 +8,8 @@ For this project, i got photos of kids from an Autism Dataset (Autism-Image- Dat
  ## DATA PREPARATION.
  ### MEDIAPIPE.
  - Using the Mediapipe, i created a face-mesh landmarks shown in the image below.
-```PYTHON
+
+```python
 
 !pip install mediapipe opencv-python
 from google.colab.patches import cv2_imshow
@@ -18,6 +19,8 @@ import mediapipe as mp
 # Initialize MediaPipe Face Mesh
 mp_face_mesh = mp.solutions.face_mesh
 face_mesh = mp_face_mesh.FaceMesh(static_image_mode=True, max_num_faces=1, min_detection_confidence=0.5)
+```
+```
 
 # Load the image
 image_path = "/content/This-paper-introduces-MaskFaceGAN-a-novel-approach-to-face-attribute-editing-capable-of.png"
@@ -26,7 +29,8 @@ rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 # Perform facial landmark detection
 results = face_mesh.process(rgb_image)
-
+```
+```
 if results.multi_face_landmarks:
     for face_landmarks in results.multi_face_landmarks:
         # Draw landmarks on the image
@@ -37,7 +41,8 @@ if results.multi_face_landmarks:
             cv2.circle(image, (x, y), 1, (0, 255, 0), -1)
             # Optionally, put the landmark index number
             cv2.putText(image, str(idx), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (255, 0, 0), 1, cv2.LINE_AA)
-
+```
+```
     # Save the image with landmarks
     cv2.imwrite("output_image_with_landmarks.jpg", image)
 ```
