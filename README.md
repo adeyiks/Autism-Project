@@ -1,12 +1,12 @@
-# Autism-Project
+# AUTISM PROJECT
 Predicting Onset of Autism in Kids using Face Segments
 
-## DATA
+## DATA.
 For this project, i got photos of kids from an Autism Dataset (Autism-Image- Dataset) that is available on Kaggle. Most of the children in the sample were between the ages of two and eight, while their ages ranged from two to fourteen. The pictures were all in the JPEG format and were typical 2D RGB colour pictures. There were 2,940 photographs of children in this dataset overall, divided into two categories with 1,470 in each category.
  ![full face](./folder/images/full picture.jpg)
 
- ## DATA PREPARATION
- ### MEDIAPIPE
+ ## DATA PREPARATION.
+ ### MEDIAPIPE.
  - Using the Mediapipe, i created a face-mesh landmarks shown in the image below.
 ```PYTHON
 !pip install mediapipe opencv-python
@@ -40,5 +40,7 @@ if results.multi_face_landmarks:
     # Save the image with landmarks
     cv2.imwrite("output_image_with_landmarks.jpg", image)
 ```
-![Face Mesh](
+![Face Mesh](./folder/images/face mesh.jpg).
+
+### FACE SEGMENT EXTRACTION.
    
