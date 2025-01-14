@@ -122,4 +122,4 @@ for filename in os.listdir(input_folder):
 
                 print(f"Saved extracted upper face region to {output_path}")
 ```
-   
+   Using the the face mesh landmarks points I was able to extract the region of the face (eyes region, forehead region, left face, right face, upper region, lower region, nose and cheeks) required from the dataset.
